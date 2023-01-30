@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JashGro's Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/fa4e918287.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="images/logo.png" class="logo">
+                <ul id="sidemenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <i class="icofas fa-solid fa-xmark" onclick="closemenu()"></i>
+                </ul>
+                <i class="icofas fa-solid fa-bars" onclick="openmenu()"></i>
+            </nav>
+            <div class="header-text">
+                <p>UI/UX Designer</p>
+                <h1>Hi, I'm <span>Jash</span><br>Gro From India</h1>
+            </div>
+        </div>
+    </div>
+<!-- ------------------about-------------- -->
+<div id="about">
+    <div class="container">
+        <div class="row">
+            <div class="about-col-1">
+                <img src="images/user.png">
+            </div>
+            <div class="about-col-2">
+                <h1 class="sub-title">About Me</h1>
+                <p>I am a full-stack web developer with a passion for delivering high-quality and user-friendly websites. Proficient in programming languages like Python, C, C++ and Django, I have honed my skills in DSA to bring innovative and efficient solutions to the table. Let's work together to bring your ideas to life on the web. Contact me today to start your project.</p>
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                    <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                    <p class="tab-links" onclick="opentab('education')">Education</p>
+                </div>
+                <div class="tab-contents active-tab" id="skills">
+                    <ul>
+                        <li><span>Web Development</span><br>Web app Development</li>
+                        <li><span>UI/UX</span><br>Designing Web/App interfaces</li>
+                        <li><span>App Development</span><br>Building Android/iOS apps</li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="experience">
+                    <ul>
+                        <li><span>2021 - Current</span><br>UI/UX Design Training at ET Institute</li>
+                        <li><span>Web Development</span><br>Team lead at StarApp LLC.</li>
+                        <li><span>App Development</span><br>UI/UX Design Executive at Coin Digital Ltd.</li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="education">
+                    <ul>
+                        <li><span>2021</span><br>Amity University, Noida</li>
+                        <!-- <li><span>2017</span><br>MBA from Amity Noida</li> -->
+                        <!-- <li><span>2016</span><br>BBA at bla bla.</li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ---------------services------------- -->
+<div id="services">
+    <div class="container">
+        <h1 class="sub-title">My Services</h1>
+        <div class="services-list">
+            <div>
+                <i class="fa-solid fa-code"></i>
+                <h2>Web Developer</h2>
+                <p>As a web developer, my goal is to design and build websites that are not only functional but also aesthetically pleasing. I stay up-to-date with the latest web development trends and technologies, ensuring that each project I work on is at the forefront of the industry. I believe in creating websites that are not just visually appealing but also highly functional, delivering a great user experience. If you're looking for a web developer to help bring your ideas to life, I would be honored to discuss your project with you.</p>
+                <!-- <a href="#">Learn more</a> -->
+            </div>
+            <div>
+                <i class="fa-solid fa-crop-simple"></i>
+                <h2>UI/UX Design</h2>
+                <p>As a web developer, understanding the principles of UI/UX design can lead to more intuitive and effective web design. My portfolio showcases my skills in creating clean, user-centered interfaces using modern design trends and best practices. I work closely with clients to understand their needs and goals, and use that knowledge to design a unique and engaging user experience. From wireframing to prototyping, I take a collaborative and iterative approach to designing intuitive and user-friendly interfaces that deliver results.</p>
+                <!-- <a href="#">Learn more</a> -->
+            </div>
+            <div>
+                <i class="fa-brands fa-app-store"></i>
+                <h2>App Design</h2>
+                <p>My approach to app design is centered around user needs and business objectives, ensuring that my designs are both functional and aesthetically pleasing. I have a strong understanding of design principles such as typography, color theory, and layout, which allows me to create visually appealing apps. I work closely with clients to gather their specific requirements, preferences, and feedback to make sure the final product meets their expectations.</p>
+                <!-- <a href="#">Learn more</a> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ---------------------portfolio----------------- -->
+<div id="portfolio">
+    <div class="container">
+        <h1 class="sub-title">My Work</h1>
+        <div class="work-list">
+            <div class="work">
+                <img src="images/work-1.png">
+                <div class="layer">
+                    <h3>Social Media App</h3>
+                    <p>The app that connects you to the most talented people around world. Download it from Play Store</p>
+                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+            <div class="work">
+                <img src="images/work-2.png">
+                <div class="layer">
+                    <h3>Music App</h3>
+                    <p>The app that connects you to the most talented people around world. Download it from Play Store</p>
+                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+            <div class="work">
+                <img src="images/work-3.png">
+                <div class="layer">
+                    <h3>Online Shopping App</h3>
+                    <p>The app that connects you to the most talented people around world. Download it from Play Store</p>
+                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+        </div>
+        <a href="" class="btn">See more</a>
+    </div>
+</div>
+<!-- -------------------contact---------------- -->
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">Contact Me</h1>
+                <p><i class="fa-sharp fa-solid fa-paper-plane"></i> <a class="mailatt" href="mailto:jashg703gd@gmail.com">jashg703gd@gmail.com</a></p>
+                <p><i class="fa-sharp fa-solid fa-square-phone"></i> 1234567890</p>
+                <div class="social-icons">
+                    <a href="https://telegram.dog/deveIoper_x" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="https://twitter.com/jash_gro" target="_blank"><i class="fa-brands fa-twitter-square"></i></a>
+                    <a href="https://www.instagram.com/jash_gro/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/jash-gro-3781a6244" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+                <!-- <a href="images/my-cv.pdf" download class="btn btn2" target="_blank">Download CV</a> -->
+            </div>
+            <div class="contact-right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="Email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn btn2">Submit</button>
+                </form>
+                <span id="msg"></span>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>© Jash. Made with <i class="fa-solid fa-heart"></i> by <a href="https://telegram.dog/DeveIoper_X" target="_blank" class="mailatt">DeveIoper_X</a></p>
+    </div>
+</div>
+
+<script>
+
+    var tablinks= document.getElementsByClassName("tab-links");
+    var tabcontents= document.getElementsByClassName("tab-contents");
+
+    function opentab(tabname){
+        for (tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+        for (tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+
+</script>
+
+<script>
+
+    var sidemenu=document.getElementById("sidemenu");
+    function openmenu(){
+        sidemenu.style.right="0";
+    }
+    function closemenu(){
+        sidemenu.style.right="-200px";
+    }
+</script>
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwAOxvgHyPIpSmLeu11KJNgrxUvI1pnCzWvlZkuqOTjYD2auSnQwbuKONorNVn7OqCNyg/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg=document.getElementById("msg")
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML="Message Sent Sucessfully!";
+            setTimeout(function(){
+                msg.innerHTML=""
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+</body>
+</html>
