@@ -95,3 +95,27 @@ nav .circle{
     background: #f53192;
     color: #fff;
 }
+.copyright{
+    width: 100%;
+    text-align: center;
+    padding: 25px 0;
+    background: #262626;
+    font-weight: 300;
+    margin-top: 20px;
+}
+.copyright p{
+    color: #fff;
+}
+.copyright i{
+    color: #ff004f;
+}
+.mailatt{
+    text-decoration: none;
+    color: #fff;
+}
+/* --------------------CSS for small screens---------------- */
+@media only screen and (max-width:600px){
+    .copyright{
+        font-size: 14px;
+    }
+}
