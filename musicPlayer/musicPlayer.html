@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/fa4e918287.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="music-player">
+            <nav>
+                <div class="circle">
+                    <a href="https://bit.ly/jashgro"><i class="fa-solid fa-angle-left"></i></a>
+                </div>
+                <div class="circle">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </nav>
+            <img id="musicCover" src="media/1.png" class="song-img">
+            <h1 id="musicName">Summer High</h1>
+            <p id="musicArtist">AP Dhillon</p>
+
+            <audio id="song" preload="none" autostart="0" autostart="false">
+                <source id="musicPath" src="media/1.jash" type="audio/mpeg">
+            </audio>
+            <input type="range" value="0" id="progress">
+
+            <div class="controls">
+                <div onclick="previousMusic()"><i class="fa-solid fa-backward"></i></div>
+                <div onclick="playPause()"><i class="fa-solid fa-play" id="ctrlIcon"></i></div>
+                <div onclick="nextMusic()"><i class="fa-solid fa-forward"></i></div>
+            </div>
+
+        </div>
+        <div class="copyright">
+            <p>© Jash. Made with <i class="fa-solid fa-heart"></i> by <a href="https://telegram.dog/DeveIoper_X" target="_blank" class="mailatt">DeveIoper_X</a></p>
+        </div>
+    </div>
+
+<script>
+
+var songNames=["Summer High","Brown Munde","Beliya","Desires","Excuses","Ma Belle","Pasoori"]
+var Artist=["AP Dhillon","AP Dhillon","Gurnam Bhullar","AP Dhillon","AP Dhillon","AP Dhillon","Coke Studio"]
+
+    let progress= document.getElementById("progress");
+    let song= document.getElementById("song");
+    let ctrlIcon= document.getElementById("ctrlIcon");
+
+        song.onloadedmetadata=function(){
+            progress.max= song.duration;
+            progress.value= song.currentTime;
+
+        }
+
+        function playPause(){
+            if(ctrlIcon.classList.contains("fa-pause")){
+                song.pause();
+                ctrlIcon.classList.remove("fa-pause");
+                ctrlIcon.classList.add("fa-play");
+
+            }
+            else{
+                song.play()
+                ctrlIcon.classList.add("fa-pause");
+                ctrlIcon.classList.remove("fa-play");
+            }
+        }
+        var i=1;
+        function nextMusic(){
+            song.pause();
+            ctrlIcon.classList.add("fa-pause");
+            ctrlIcon.classList.remove("fa-play");
+            document.getElementById("musicPath").setAttribute("src","media/"+ ++i + ".jash")
+            document.getElementById("musicCover").setAttribute("src","media/"+ i + ".png")
+            document.getElementById("musicName").innerText=songNames[i-1]
+            document.getElementById("musicArtist").innerText=Artist[i-1]
+            if (i===7){
+                i=0
+            }
+            song.load();
+            song.play();
+        }
+        function previousMusic(){
+            song.pause();
+            ctrlIcon.classList.add("fa-pause");
+            ctrlIcon.classList.remove("fa-play");
+            if (i===1){
+                i=8
+            }
+            document.getElementById("musicPath").setAttribute("src","media/"+ --i + ".jash")
+            document.getElementById("musicCover").setAttribute("src","media/"+ i + ".png")
+            document.getElementById("musicName").innerText=songNames[i-1]
+            document.getElementById("musicArtist").innerText=Artist[i-1]
+            song.load();
+            song.play();
+        }
+        if (song.play()){
+            setInterval(()=>{
+                progress.value=song.currentTime;
+            },500)
+        }
+progress.onchange=function(){
+    song.play();
+    song.currentTime=progress.value;
+    ctrlIcon.classList.add("fa-pause");
+    ctrlIcon.classList.remove("fa-play");
+}
+
+</script>
+</body>
+</html>
