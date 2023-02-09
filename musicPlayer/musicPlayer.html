@@ -71,15 +71,15 @@ var Artist=["AP Dhillon","AP Dhillon","Gurnam Bhullar","AP Dhillon","AP Dhillon"
         var i=1;
         function nextMusic(){
             song.pause();
+            if (i===7){
+                i=0
+            }
             ctrlIcon.classList.add("fa-pause");
             ctrlIcon.classList.remove("fa-play");
             document.getElementById("musicPath").setAttribute("src","media/"+ ++i + ".jash")
             document.getElementById("musicCover").setAttribute("src","media/"+ i + ".png")
             document.getElementById("musicName").innerText=songNames[i-1]
             document.getElementById("musicArtist").innerText=Artist[i-1]
-            if (i===7){
-                i=0
-            }
             song.load();
             song.play();
         }
