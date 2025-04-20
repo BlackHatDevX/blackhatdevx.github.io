@@ -144,13 +144,23 @@
             </div>
           </div>
         </div>
-        <a
-          style="margin-top: 50px; margin-bottom: 0px"
-          href="http://bit.ly/3jYCiHk"
-          target="_blank"
-          class="btn"
-          >Certifications <i class="fa-solid fa-graduation-cap"></i
-        ></a>
+        <div class="mt-10" data-aos="fade-up">
+          <h2 class="text-3xl font-bold mb-6 bg-gradient-to-r from-primary to-blue-500 text-transparent bg-clip-text">Certifications & Achievements</h2>
+          <div class="relative">
+            <button id="scrollLeftButton" onclick="scrollCertificates('left')" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-primary/80 hover:bg-primary text-white rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition-all opacity-0">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <div id="certificatesContainer" class="flex overflow-x-auto gap-4 py-4 px-12 hide-scrollbar">
+              <!-- Certificates will be loaded here dynamically -->
+              <div class="flex items-center justify-center">
+                <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-primary"></div>
+              </div>
+            </div>
+            <button id="scrollRightButton" onclick="scrollCertificates('right')" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-primary/80 hover:bg-primary text-white rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition-all opacity-100">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     <!-- ---------------services------------- -->
@@ -618,6 +628,185 @@
             form.reset();
           })
           .catch((error) => console.error("Error!", error.message));
+      });
+    </script>
+
+    <style>
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Modal styles */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal img {
+        max-width: 90%;
+        max-height: 90vh;
+      }
+
+      .modal .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+    </style>
+
+    <script>
+      async function fetchGDriveImages() {
+        const folderUrl = 'https://drive.google.com/drive/folders/1FaZ0C2uZHNkzKOcDbxwz21h7tdAtiLJR';
+        const imageFiles = [
+          { id: '1XarhOGqWhevfK8OZLvL-25fVupK3mdDw', name: 'TCS Applied Cloud Computing', type: 'pdf' },
+          { id: '1IbAiTN8-ynuS3iwpXw10Pblo0UJBmlrH', name: 'TCS Information Security', type: 'pdf' },
+          { id: '1IbFzZGXIXR2M0AO21nMFgfblwp-fM-bi', name: 'TCS Data Mining & Analysis', type: 'pdf' },
+          { id: '1d3Xb3VIwRvXTYuYUbTZNApl1UygOwy_4', name: 'KG Coding Certificate', type: 'png' },
+          { id: '1UzPolA5fM_euZx3QR7Kxz4J6kF4ZNXwe', name: 'Certificate 1', type: 'jpg' },
+          { id: '1wrl5EBDp6VKmJJ2e0VyE75C6-ZZclrqS', name: 'Certificate 2', type: 'jpg' },
+          { id: '1P2S8HMyNNJ_Q3m7tmqKhFV2b_ACmsDeN', name: 'Certificate 3', type: 'jpg' },
+          { id: '1hZX5Jy-NNlM1RWJg5Xj76VnyDm_KCZPN', name: 'Certificate 4', type: 'jpg' },
+          { id: '1JdepJc_l3J6YUFPd5sYFye0scUeCQ_7d', name: 'Certificate 5', type: 'jpg' },
+          { id: '1y3NuSakB-UD4-McKnFf3v4t0u-bTWtoW', name: 'Certificate 6', type: 'jpg' },
+          { id: '1TZfJjE1O9Q2V9EyLF_Kn9JgVAnHeaSiX', name: 'Certificate 7', type: 'jpg' },
+          { id: '1_UPmEz39r7mOHjf3i_u5jgqc4o29VRf4', name: 'Certificate 8', type: 'jpg' },
+          { id: '1iX6Ym_m39_JGFEPEsx42YISlcwO46-9f', name: 'Certificate 9', type: 'jpg' },
+          { id: '1Rbs7zj1t0VfLIj3IcqbCCb4RGZ4MH5qQ', name: 'Certificate 10', type: 'jpg' },
+          { id: '1n_H3zV7UA48g3KpT4mVA1hZAQJfZCogf', name: 'Certificate 11', type: 'jpg' },
+          { id: '1nbFdlyrmu-AeI1zVXY32MlFmKkdQyFPm', name: 'Certificate 12', type: 'jpg' },
+          { id: '1nnsII4Z11eHENSX4Kr7tGcjmXgmCL02a', name: 'Certificate 13', type: 'jpg' },
+          { id: '1yL7nr4UdWLpHAoQhOSuonTxVeY-yXVj1', name: 'Certificate 14', type: 'jpg' },
+          { id: '1Ywy7WOXI63t7rDjVjZIOHkG17DK_TAlu', name: 'Certificate 15', type: 'jpg' }
+        ];
+
+        // Shuffle the array
+        const shuffledFiles = [...imageFiles].sort(() => Math.random() - 0.5);
+
+        const container = document.getElementById('certificatesContainer');
+        container.innerHTML = ''; // Clear loading spinner
+        
+        shuffledFiles.forEach(file => {
+          const imgElement = document.createElement('div');
+          imgElement.className = 'flex-none w-64 h-64 relative group';
+          
+          // Use iframe for both PDFs and images
+          imgElement.innerHTML = `
+            <div class="w-full h-full relative">
+              <iframe 
+                src="https://drive.google.com/file/d/${file.id}/preview"
+                class="w-full h-full rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105"
+                loading="lazy"
+                style="border: none; overflow: hidden; background: ${file.type === 'pdf' ? '#fff' : 'transparent'}"
+                allow="autoplay"
+              ></iframe>
+              <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
+                <span class="text-white text-center px-4">
+                  ${file.name}
+                  ${file.type === 'pdf' ? '<br><small class="text-primary">(Click to view full PDF)</small>' : ''}
+                </span>
+              </div>
+            </div>
+          `;
+          
+          imgElement.onclick = () => {
+            if (file.type === 'pdf') {
+              // Open PDF in new tab for better viewing
+              window.open(`https://drive.google.com/file/d/${file.id}/view`, '_blank');
+            } else {
+              // Show image in modal
+              openCertificate(`https://drive.google.com/file/d/${file.id}/preview`, file.name);
+            }
+          };
+          
+          container.appendChild(imgElement);
+        });
+
+        // Add scroll event listener to show/hide buttons based on scroll position
+        container.addEventListener('scroll', () => {
+          const leftButton = document.getElementById('scrollLeftButton');
+          const rightButton = document.getElementById('scrollRightButton');
+          
+          // Show/hide left button based on scroll position
+          if (container.scrollLeft > 0) {
+            leftButton.classList.remove('opacity-0');
+            leftButton.classList.add('opacity-100');
+          } else {
+            leftButton.classList.remove('opacity-100');
+            leftButton.classList.add('opacity-0');
+          }
+          
+          // Show/hide right button based on scroll position
+          if (container.scrollLeft < (container.scrollWidth - container.clientWidth)) {
+            rightButton.classList.remove('opacity-0');
+            rightButton.classList.add('opacity-100');
+          } else {
+            rightButton.classList.remove('opacity-100');
+            rightButton.classList.add('opacity-0');
+          }
+        });
+      }
+
+      // Initialize the certificates gallery
+      document.addEventListener('DOMContentLoaded', fetchGDriveImages);
+
+      function scrollCertificates(direction) {
+        const container = document.getElementById('certificatesContainer');
+        const scrollAmount = container.clientWidth * 0.8; // Scroll 80% of the container width
+        
+        container.scrollBy({
+          left: direction === 'left' ? -scrollAmount : scrollAmount,
+          behavior: 'smooth'
+        });
+      }
+
+      function openCertificate(src, title) {
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.innerHTML = `
+          <span class="close" onclick="this.parentElement.remove()">&times;</span>
+          <div class="bg-white/10 backdrop-blur-md p-6 rounded-lg max-w-[90%] max-h-[90vh]">
+            <h3 class="text-white text-xl font-bold mb-4">${title}</h3>
+            <iframe 
+              src="${src}"
+              class="max-w-full max-h-[70vh] w-[800px] h-[600px]"
+              style="border: none; overflow: hidden;"
+              allow="autoplay"
+            ></iframe>
+          </div>
+        `;
+        document.body.appendChild(modal);
+      }
+
+      // Close modal when clicking outside the image
+      document.addEventListener('click', (e) => {
+        if (e.target.className === 'modal') {
+          e.target.remove();
+        }
+      });
+
+      // Close modal when pressing escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          const modal = document.querySelector('.modal');
+          if (modal) modal.remove();
+        }
       });
     </script>
   </body>
