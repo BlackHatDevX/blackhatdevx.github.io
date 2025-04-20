@@ -5,48 +5,86 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JashGro's Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css" />
     <script
       src="https://kit.fontawesome.com/fa4e918287.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link
+      href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+      rel="stylesheet"
+    >
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#ff004f',
+              dark: '#080808',
+            },
+            animation: {
+              'gradient': 'gradient 8s linear infinite',
+            },
+            keyframes: {
+              gradient: {
+                '0%, 100%': {
+                  'background-size': '200% 200%',
+                  'background-position': 'left center'
+                },
+                '50%': {
+                  'background-size': '200% 200%',
+                  'background-position': 'right center'
+                }
+              }
+            }
+          }
+        }
+      }
+    </script>
     <link
       href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAABP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAQAAAAABEAABEAAAABEAAAARAAABEAEAAAEQABEAARAAABEBEAAAEQAAARARAAABEAARAAEQAAAQARAAABEAAAARAAAAARAAARAAAAAAEAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
       rel="icon"
       type="image/x-icon"
     />
   </head>
-  <body oncopy="return false" oncut="return false" onpaste="return false">
-    <div id="header">
-      <div class="container">
-        <nav>
-          <img src="images/logo.png" class="logo" />
-          <ul id="sidemenu">
-            <li><a href="#header">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <i class="icofas fa-solid fa-xmark" onclick="closemenu()"></i>
+  <body class="bg-dark text-white overflow-x-hidden" oncopy="return false" oncut="return false" onpaste="return false">
+    <div id="header" class="relative w-full min-h-screen bg-cover bg-center">
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="container relative z-10">
+        <nav class="flex items-center justify-between flex-wrap p-6 backdrop-blur-md bg-white/10 rounded-xl border border-white/20">
+          <img src="images/logo.png" class="w-36 transition-transform hover:scale-110" />
+          <ul id="sidemenu" class="flex space-x-8">
+            <li><a href="#header" class="text-lg hover:text-primary transition-colors">Home</a></li>
+            <li><a href="#about" class="text-lg hover:text-primary transition-colors">About</a></li>
+            <li><a href="#services" class="text-lg hover:text-primary transition-colors">Services</a></li>
+            <li><a href="#portfolio" class="text-lg hover:text-primary transition-colors">Portfolio</a></li>
+            <li><a href="#contact" class="text-lg hover:text-primary transition-colors">Contact</a></li>
+            <i class="icofas fa-solid fa-xmark cursor-pointer" onclick="closemenu()"></i>
           </ul>
-          <i class="icofas fa-solid fa-bars" onclick="openmenu()"></i>
+          <i class="icofas fa-solid fa-bars cursor-pointer md:hidden" onclick="openmenu()"></i>
         </nav>
-        <div class="header-text">
-          <p>Developer X</p>
-          <h1>Hi, I'm <span>Jash</span><br />Gro From India</h1>
+        <div class="header-text mt-32 md:mt-40">
+          <p class="text-2xl md:text-4xl">Developer X</p>
+          <h1 class="text-4xl md:text-6xl mt-4 font-bold">
+            Hi, I'm <span class="text-primary animate-pulse">Jash</span><br />Gro From India
+          </h1>
         </div>
       </div>
     </div>
     <!-- ------------------about-------------- -->
-    <div id="about" style="padding-bottom: 50px">
-      <div class="container">
-        <div class="row">
-          <div class="about-col-1">
-            <img src="images/user.png" />
+    <div id="about" class="py-20">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row gap-10">
+          <div class="md:w-1/2" data-aos="fade-right">
+            <img src="images/user.png" class="w-full rounded-2xl shadow-xl" />
           </div>
-          <div class="about-col-2">
-            <h1 class="sub-title">About Me</h1>
-            <p>
+          <div class="md:w-1/2" data-aos="fade-left">
+            <h1 class="text-4xl md:text-6xl font-bold bg-gradient-to-r from-primary to-blue-500 text-transparent bg-clip-text">About Me</h1>
+            <p class="mt-6 text-gray-300">
               I am a full-stack web developer with a strong passion for crafting
               user-friendly websites. Proficient in Python, C, and C++, I excel
               in problem-solving through Data Structures and Algorithms. My
@@ -55,14 +93,10 @@
               and JavaScript. Let's collaborate to turn your ideas into engaging
               web experiences—reach out today to get started.
             </p>
-            <div class="tab-titles">
-              <p class="tab-links active-link" onclick="opentab('skills')">
-                Skills
-              </p>
-              <p class="tab-links" onclick="opentab('experience')">
-                Experience
-              </p>
-              <p class="tab-links" onclick="opentab('education')">Education</p>
+            <div class="tab-titles flex space-x-8 mt-8">
+              <p class="tab-links cursor-pointer relative text-lg after:content-[''] after:w-0 after:h-0.5 after:bg-primary after:absolute after:left-0 after:-bottom-1 after:transition-all hover:after:w-1/2" onclick="opentab('skills')">Skills</p>
+              <p class="tab-links cursor-pointer relative text-lg after:content-[''] after:w-0 after:h-0.5 after:bg-primary after:absolute after:left-0 after:-bottom-1 after:transition-all hover:after:w-1/2" onclick="opentab('experience')">Experience</p>
+              <p class="tab-links cursor-pointer relative text-lg after:content-[''] after:w-0 after:h-0.5 after:bg-primary after:absolute after:left-0 after:-bottom-1 after:transition-all hover:after:w-1/2" onclick="opentab('education')">Education</p>
             </div>
             <div class="tab-contents active-tab" id="skills">
               <ul>
@@ -115,14 +149,14 @@
       </div>
     </div>
     <!-- ---------------services------------- -->
-    <div id="services">
-      <div class="container">
-        <h1 class="sub-title">My Services</h1>
-        <div class="services-list">
-          <div>
-            <i class="fa-solid fa-code"></i>
-            <h2>Web Developer</h2>
-            <p>
+    <div id="services" class="py-20 bg-black/30">
+      <div class="container mx-auto px-4">
+        <h1 class="text-4xl md:text-6xl font-bold text-center bg-gradient-to-r from-primary to-blue-500 text-transparent bg-clip-text mb-16" data-aos="fade-up">My Services</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="backdrop-blur-md bg-white/10 rounded-xl border border-white/20 p-8 transition-all hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/20" data-aos="fade-up" data-aos-delay="100">
+            <i class="fa-solid fa-code text-5xl text-primary mb-6"></i>
+            <h2 class="text-2xl font-bold mb-4">Web Developer</h2>
+            <p class="text-gray-300">
               As a web developer, my goal is to design and build websites that
               are not only functional but also aesthetically pleasing. I stay
               up-to-date with the latest web development trends and
@@ -135,10 +169,10 @@
             </p>
             <!-- <a href="#">Learn more</a> -->
           </div>
-          <div>
-            <i class="fa-solid fa-crop-simple"></i>
-            <h2>UI/UX Design</h2>
-            <p>
+          <div class="backdrop-blur-md bg-white/10 rounded-xl border border-white/20 p-8 transition-all hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/20" data-aos="fade-up" data-aos-delay="200">
+            <i class="fa-solid fa-crop-simple text-5xl text-primary mb-6"></i>
+            <h2 class="text-2xl font-bold mb-4">UI/UX Design</h2>
+            <p class="text-gray-300">
               As a web developer, understanding the principles of UI/UX design
               can lead to more intuitive and effective web design. My portfolio
               showcases my skills in creating clean, user-centered interfaces
@@ -151,10 +185,10 @@
             </p>
             <!-- <a href="#">Learn more</a> -->
           </div>
-          <div>
-            <i class="fa-brands fa-app-store"></i>
-            <h2>App Design</h2>
-            <p>
+          <div class="backdrop-blur-md bg-white/10 rounded-xl border border-white/20 p-8 transition-all hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/20" data-aos="fade-up" data-aos-delay="300">
+            <i class="fa-brands fa-app-store text-5xl text-primary mb-6"></i>
+            <h2 class="text-2xl font-bold mb-4">App Design</h2>
+            <p class="text-gray-300">
               My approach to app design is centered around user needs and
               business objectives, ensuring that my designs are both functional
               and aesthetically pleasing. I have a strong understanding of
@@ -170,140 +204,130 @@
       </div>
     </div>
     <!-- ---------------------portfolio----------------- -->
-    <div id="portfolio">
-      <div class="container">
-        <h1 class="sub-title">My Work</h1>
-        <div class="work-list">
-          <div class="work">
-            <img src="images/work-10.png" />
-            <div class="layer">
-              <h3>Quickeyfy - Freelance site</h3>
-              <p>
+    <div id="portfolio" class="py-20">
+      <div class="container mx-auto px-4">
+        <h1 class="text-4xl md:text-6xl font-bold text-center bg-gradient-to-r from-primary to-blue-500 text-transparent bg-clip-text mb-16" data-aos="fade-up">My Work</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="group relative overflow-hidden rounded-xl" data-aos="zoom-in" data-aos-delay="100">
+            <img src="images/work-10.png" class="w-full transition-all duration-700 ease-in-out group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/90 translate-y-full group-hover:translate-y-0 transition-all duration-700 ease-in-out p-6 flex flex-col justify-end">
+              <h3 class="text-xl font-bold mb-2">Quickeyfy - Freelance site</h3>
+              <p class="text-sm text-gray-200">
                 A freelance platform with integrated UPI payment gateway.
                 Quikeyfy: Zero Transaction Charges, Maximum Security, Total
                 Independence
               </p>
-              <a href="https://quikeyfy.onrender.com/" target="_blank"
-                ><i class="fa-solid fa-arrow-up-right-from-square"></i
-              ></a>
-              <a
-                href="https://github.com/BlackHatDevX/UPI-PAYMENT-GATEWAY-QUIKEYFY"
-                target="_blank"
-                ><i class="fa-solid fa-code"></i
-              ></a>
+              <div class="flex space-x-4 mt-4">
+                <a href="https://quikeyfy.onrender.com/" target="_blank" class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+                <a href="https://github.com/BlackHatDevX/UPI-PAYMENT-GATEWAY-QUIKEYFY" target="_blank" class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-code"></i>
+                </a>
+              </div>
             </div>
           </div>
-          <div class="work">
-            <img src="images/work-12.png" />
-            <div class="layer">
-              <h3>Quickbite - Food Ordering App</h3>
-              <p>
+          <div class="group relative overflow-hidden rounded-xl" data-aos="zoom-in" data-aos-delay="200">
+            <img src="images/work-12.png" class="w-full transition-all duration-700 ease-in-out group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/90 translate-y-full group-hover:translate-y-0 transition-all duration-700 ease-in-out p-6 flex flex-col justify-end">
+              <h3 class="text-xl font-bold mb-2">Quickbite - Food Ordering App</h3>
+              <p class="text-sm text-gray-200">
                 A Food Delivery Web App with Stripe Payment Gateway. Includes
                 admin panel too. Backend Loading takes a minute so please wait
                 to let backend server start after opening site.
               </p>
-              <a href="https://quickbitesjash.web.app/" target="_blank"
-                ><i class="fa-solid fa-arrow-up-right-from-square"></i
-              ></a>
+              <a href="https://quickbitesjash.web.app/" target="_blank" class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
             </div>
           </div>
-          <div class="work">
-            <img src="images/work-6.png" />
-            <div class="layer">
-              <h3>Movie Dash App</h3>
-              <p>
+          <div class="group relative overflow-hidden rounded-xl" data-aos="zoom-in" data-aos-delay="300">
+            <img src="images/work-6.png" class="w-full transition-all duration-700 ease-in-out group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/90 translate-y-full group-hover:translate-y-0 transition-all duration-700 ease-in-out p-6 flex flex-col justify-end">
+              <h3 class="text-xl font-bold mb-2">Movie Dash App</h3>
+              <p class="text-sm text-gray-200">
                 Movies Dash is a sleek and feature-rich React Native app that
                 allows users to explore movies, view details, search for movies,
                 and more.
               </p>
-              <a href="https://bit.ly/movieDashReactNative" target="_blank"
-                ><i class="fa-solid fa-arrow-up-right-from-square"></i
-              ></a>
-              <a
-                href="https://github.com/BlackHatDevX/MOVIE-APP-RN"
-                target="_blank"
-                ><i class="fa-solid fa-code"></i
-              ></a>
+              <a href="https://bit.ly/movieDashReactNative" target="_blank" class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+              <a href="https://github.com/BlackHatDevX/MOVIE-APP-RN" target="_blank" class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform">
+                <i class="fa-solid fa-code"></i>
+              </a>
             </div>
           </div>
-          <div class="work">
-            <img src="images/work-9.png" />
-            <div class="layer">
-              <h3>Chotu.ly - URL Shortener</h3>
-              <p>
+          <div class="group relative overflow-hidden rounded-xl" data-aos="zoom-in" data-aos-delay="400">
+            <img src="images/work-9.png" class="w-full transition-all duration-700 ease-in-out group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/90 translate-y-full group-hover:translate-y-0 transition-all duration-700 ease-in-out p-6 flex flex-col justify-end">
+              <h3 class="text-xl font-bold mb-2">Chotu.ly - URL Shortener</h3>
+              <p class="text-sm text-gray-200">
                 Chotu.ly is a URL shortening service that helps you shorten long
                 URLs into more manageable links. It's fast, free, and easy to
                 use.
               </p>
-              <a href="https://chotu-ly.onrender.com/" target="_blank"
-                ><i class="fa-solid fa-arrow-up-right-from-square"></i
-              ></a>
-              <a
-                href="https://github.com/BlackHatDevX/CHOTU.LY-SHORTNER"
-                target="_blank"
-                ><i class="fa-solid fa-code"></i
-              ></a>
+              <a href="https://chotu-ly.onrender.com/" target="_blank" class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+              <a href="https://github.com/BlackHatDevX/CHOTU.LY-SHORTNER" target="_blank" class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform">
+                <i class="fa-solid fa-code"></i>
+              </a>
             </div>
           </div>
-          <div class="work">
-            <img src="images/work-5.png" />
-            <div class="layer">
-              <h3>YoFood - Food Ordering App</h3>
-              <p>
+          <div class="group relative overflow-hidden rounded-xl" data-aos="zoom-in" data-aos-delay="500">
+            <img src="images/work-5.png" class="w-full transition-all duration-700 ease-in-out group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/90 translate-y-full group-hover:translate-y-0 transition-all duration-700 ease-in-out p-6 flex flex-col justify-end">
+              <h3 class="text-xl font-bold mb-2">YoFood - Food Ordering App</h3>
+              <p class="text-sm text-gray-200">
                 YoFood is a food ordering app built using the MERN stack. It allows users to browse
                 through a variety of food items, add them to their cart, and
                 place orders for delivery.
               </p>
-              <a href="https://bit.ly/yofoodjash" target="_blank"
-                ><i class="fa-solid fa-arrow-up-right-from-square"></i
-              ></a>
-              <a href="https://github.com/BlackHatDevX/YoFood" target="_blank"
-                ><i class="fa-solid fa-code"></i
-              ></a>
+              <a href="https://bit.ly/yofoodjash" target="_blank" class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+              <a href="https://github.com/BlackHatDevX/YoFood" target="_blank" class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform">
+                <i class="fa-solid fa-code"></i>
+              </a>
             </div>
           </div>
-          <div class="work">
-            <img src="images/work-11.png" />
-            <div class="layer">
-              <h3>UPI Payment Gateway</h3>
-              <p>
+          <div class="group relative overflow-hidden rounded-xl" data-aos="zoom-in" data-aos-delay="600">
+            <img src="images/work-11.png" class="w-full transition-all duration-700 ease-in-out group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/90 translate-y-full group-hover:translate-y-0 transition-all duration-700 ease-in-out p-6 flex flex-col justify-end">
+              <h3 class="text-xl font-bold mb-2">UPI Payment Gateway</h3>
+              <p class="text-sm text-gray-200">
                 Zero Transaction Charges, Maximum Security, Total Independence
               </p>
-              <a
-                href="https://upi-payment-gateway-demo.onrender.com/"
-                target="_blank"
-                ><i class="fa-solid fa-arrow-up-right-from-square"></i
-              ></a>
-              <a
-                href="https://github.com/BlackHatDevX/UPI-payment-gateway"
-                target="_blank"
-                ><i class="fa-solid fa-code"></i
-              ></a>
+              <a href="https://upi-payment-gateway-demo.onrender.com/" target="_blank" class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+              <a href="https://github.com/BlackHatDevX/UPI-payment-gateway" target="_blank" class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform">
+                <i class="fa-solid fa-code"></i>
+              </a>
             </div>
           </div>
-          <div class="work">
-            <img src="images/work-2.png" />
-            <div class="layer">
-              <h3>Music App</h3>
-              <p>
+          <div class="group relative overflow-hidden rounded-xl" data-aos="zoom-in" data-aos-delay="700">
+            <img src="images/work-2.png" class="w-full transition-all duration-700 ease-in-out group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/90 translate-y-full group-hover:translate-y-0 transition-all duration-700 ease-in-out p-6 flex flex-col justify-end">
+              <h3 class="text-xl font-bold mb-2">Music App</h3>
+              <p class="text-sm text-gray-200">
                 Elevate your music experience with our intuitive and
                 user-friendly web-based music player app.
               </p>
-              <a href="https://bit.ly/3JSekrR" target="_blank"
-                ><i class="fa-solid fa-arrow-up-right-from-square"></i
-              ></a>
-              <a
-                href="https://github.com/BlackHatDevX/blackhatdevx.github.io/tree/main/musicPlayer"
-                target="_blank"
-                ><i class="fa-solid fa-code"></i
-              ></a>
+              <a href="https://bit.ly/3JSekrR" target="_blank" class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+              <a href="https://github.com/BlackHatDevX/blackhatdevx.github.io/tree/main/musicPlayer" target="_blank" class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform">
+                <i class="fa-solid fa-code"></i>
+              </a>
             </div>
           </div>
-          <div class="work">
-            <img src="images/work-8.png" />
-            <div class="layer">
-              <h3>ytDownloader App</h3>
-              <p>
+          <div class="group relative overflow-hidden rounded-xl" data-aos="zoom-in" data-aos-delay="800">
+            <img src="images/work-8.png" class="w-full transition-all duration-700 ease-in-out group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/90 translate-y-full group-hover:translate-y-0 transition-all duration-700 ease-in-out p-6 flex flex-col justify-end">
+              <h3 class="text-xl font-bold mb-2">ytDownloader App</h3>
+              <p class="text-sm text-gray-200">
                 Youtube Video Downloader: A cutting-edge React Native
                 App with a
                 sleek Material AMOLED UI. It have
@@ -311,85 +335,75 @@
                 application that simplifies the process of downloading your
                 favorite YouTube videos.
               </p>
-              <a href="https://bit.ly/jashYtDownloaderV1dot2" target="_blank"
-                ><i class="fa-solid fa-arrow-up-right-from-square"></i
-              ></a>
-              <a
-                href="https://github.com/BlackHatDevX/ytDownloader-react-native"
-                target="_blank"
-                ><i class="fa-solid fa-code"></i
-              ></a>
+              <a href="https://bit.ly/jashYtDownloaderV1dot2" target="_blank" class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+              <a href="https://github.com/BlackHatDevX/ytDownloader-react-native" target="_blank" class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform">
+                <i class="fa-solid fa-code"></i>
+              </a>
             </div>
           </div>
-          <div class="work">
-            <img src="images/work-1.png" />
-            <div class="layer">
-              <h3>IFSC Checker App</h3>
-              <p>
+          <div class="group relative overflow-hidden rounded-xl" data-aos="zoom-in" data-aos-delay="900">
+            <img src="images/work-1.png" class="w-full transition-all duration-700 ease-in-out group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/90 translate-y-full group-hover:translate-y-0 transition-all duration-700 ease-in-out p-6 flex flex-col justify-end">
+              <h3 class="text-xl font-bold mb-2">IFSC Checker App</h3>
+              <p class="text-sm text-gray-200">
                 This project is designed to help individuals easily check the
                 IFSC code of any bank in India.
               </p>
-              <a
-                href="https://github.com/BlackHatDevX/IFSC-checker"
-                target="_blank"
-                ><i class="fa-solid fa-arrow-up-right-from-square"></i
-              ></a>
-              <a
-                href="https://github.com/BlackHatDevX/IFSC-checker"
-                target="_blank"
-                ><i class="fa-solid fa-code"></i
-              ></a>
+              <a href="https://github.com/BlackHatDevX/IFSC-checker" target="_blank" class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+              <a href="https://github.com/BlackHatDevX/IFSC-checker" target="_blank" class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform">
+                <i class="fa-solid fa-code"></i>
+              </a>
             </div>
           </div>
-          <div class="work">
-            <img src="images/work-4.png" />
-            <div class="layer">
-              <h3>Weather App</h3>
-              <p>
+          <div class="group relative overflow-hidden rounded-xl" data-aos="zoom-in" data-aos-delay="1000">
+            <img src="images/work-4.png" class="w-full transition-all duration-700 ease-in-out group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/90 translate-y-full group-hover:translate-y-0 transition-all duration-700 ease-in-out p-6 flex flex-col justify-end">
+              <h3 class="text-xl font-bold mb-2">Weather App</h3>
+              <p class="text-sm text-gray-200">
                 Weather App V2 is an open source project. It provides current
                 temperature in Celsius, humidity, and wind speed for any city.
               </p>
-              <a
-                href="https://github.com/BlackHatDevX/Weather-App-V2"
-                target="_blank"
-                ><i class="fa-solid fa-arrow-up-right-from-square"></i
-              ></a>
-              <a
-                href="https://github.com/BlackHatDevX/Weather-App-V2"
-                target="_blank"
-                ><i class="fa-solid fa-code"></i
-              ></a>
+              <a href="https://github.com/BlackHatDevX/Weather-App-V2" target="_blank" class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+              <a href="https://github.com/BlackHatDevX/Weather-App-V2" target="_blank" class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform">
+                <i class="fa-solid fa-code"></i>
+              </a>
             </div>
           </div>
-          <div class="work">
-            <img src="images/work-7.png" />
-            <div class="layer">
-              <h3>BMI Calculator Plus</h3>
-              <p>
+          <div class="group relative overflow-hidden rounded-xl" data-aos="zoom-in" data-aos-delay="1100">
+            <img src="images/work-7.png" class="w-full transition-all duration-700 ease-in-out group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/90 translate-y-full group-hover:translate-y-0 transition-all duration-700 ease-in-out p-6 flex flex-col justify-end">
+              <h3 class="text-xl font-bold mb-2">BMI Calculator Plus</h3>
+              <p class="text-sm text-gray-200">
                 BMI Calculator Node is a simple yet powerful tool for
                 calculating BMI (Body Mass Index). One of the unique features of this calculator is its
                 ability to automatically detect the input unit (cm, m, or ft)
                 and provide accurate results.
               </p>
-              <a href="https://bit.ly/BMICalculatorPlusV2" target="_blank"
-                ><i class="fa-solid fa-arrow-up-right-from-square"></i
-              ></a>
-              <a
-                href="https://github.com/BlackHatDevX/BMI-Calculator-Node"
-                target="_blank"
-                ><i class="fa-solid fa-code"></i
-              ></a>
+              <a href="https://bit.ly/BMICalculatorPlusV2" target="_blank" class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+              <a href="https://github.com/BlackHatDevX/BMI-Calculator-Node" target="_blank" class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform">
+                <i class="fa-solid fa-code"></i>
+              </a>
             </div>
           </div>
-          <div class="work">
-            <img src="images/work-3.png" />
-            <div class="layer">
-              <h3>Online Shopping App</h3>
-              <p>
+          <div class="group relative overflow-hidden rounded-xl" data-aos="zoom-in" data-aos-delay="1200">
+            <img src="images/work-3.png" class="w-full transition-all duration-700 ease-in-out group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/90 translate-y-full group-hover:translate-y-0 transition-all duration-700 ease-in-out p-6 flex flex-col justify-end">
+              <h3 class="text-xl font-bold mb-2">Online Shopping App</h3>
+              <p class="text-sm text-gray-200">
                 The app that connects you to the most talented people around
                 world. Download it from Play Store
               </p>
-              <a>Soon</a>
+              <a class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform">
+                Soon
+              </a>
             </div>
           </div>
         </div>
@@ -399,63 +413,47 @@
       </div>
     </div>
     <!-- -------------------contact---------------- -->
-    <div id="contact">
-      <div class="container">
-        <div class="row">
-          <div class="contact-left">
-            <h1 class="sub-title">Contact Me</h1>
-            <p>
-              <i class="fa-sharp fa-solid fa-paper-plane"></i>
-              <a class="mailatt" href="mailto:jashgro@yandex.com"
-                >jashgro@yandex.com</a
-              >
+    <div id="contact" class="py-20 bg-black/30">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row gap-10">
+          <div class="md:w-1/2" data-aos="fade-right">
+            <h1 class="text-4xl md:text-6xl font-bold bg-gradient-to-r from-primary to-blue-500 text-transparent bg-clip-text">Contact Me</h1>
+            <p class="flex items-center mt-8 text-lg">
+              <i class="fa-sharp fa-solid fa-paper-plane text-primary mr-4"></i>
+              <a href="mailto:jashgro@yandex.com" class="hover:text-primary transition-colors">jashgro@yandex.com</a>
             </p>
             <!-- <p><i class="fa-sharp fa-solid fa-square-phone"></i> 1234567890</p> -->
-            <div class="social-icons">
-              <a href="https://telegram.dog/deveIoper_x" target="_blank"
-                ><i class="fa-brands fa-telegram"></i
-              ></a>
-              <a href="https://twitter.com/jash_gro" target="_blank"
-                ><i class="fa-brands fa-twitter-square"></i
-              ></a>
-              <a href="https://www.instagram.com/jash_gro/" target="_blank"
-                ><i class="fa-brands fa-instagram"></i
-              ></a>
-              <a href="https://www.linkedin.com/in/jash-gro" target="_blank"
-                ><i class="fa-brands fa-linkedin"></i
-              ></a>
+            <div class="flex space-x-6 mt-8">
+              <a href="https://telegram.dog/deveIoper_x" target="_blank" class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-xl hover:border-primary hover:text-primary hover:-translate-y-1 transition-all">
+                <i class="fa-brands fa-telegram"></i>
+              </a>
+              <a href="https://twitter.com/jash_gro" target="_blank" class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-xl hover:border-primary hover:text-primary hover:-translate-y-1 transition-all">
+                <i class="fa-brands fa-twitter-square"></i>
+              </a>
+              <a href="https://www.instagram.com/jash_gro/" target="_blank" class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-xl hover:border-primary hover:text-primary hover:-translate-y-1 transition-all">
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/jash-gro" target="_blank" class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-xl hover:border-primary hover:text-primary hover:-translate-y-1 transition-all">
+                <i class="fa-brands fa-linkedin"></i>
+              </a>
             </div>
             <!-- <a href="images/my-cv.pdf" download class="btn btn2" target="_blank">Download CV</a> -->
           </div>
-          <div class="contact-right">
-            <form name="submit-to-google-sheet">
-              <input type="text" name="Name" placeholder="Your Name" required />
-              <input
-                type="email"
-                name="Email"
-                placeholder="Your Email"
-                required
-              />
-              <textarea
-                name="Message"
-                rows="6"
-                placeholder="Your Message"
-              ></textarea>
-              <button type="submit" class="btn btn2">Submit</button>
+          <div class="md:w-1/2" data-aos="fade-left">
+            <form name="submit-to-google-sheet" class="space-y-6">
+              <input type="text" name="Name" placeholder="Your Name" required class="w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-4 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+              <input type="email" name="Email" placeholder="Your Email" required class="w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-4 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+              <textarea name="Message" rows="6" placeholder="Your Message" class="w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-4 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"></textarea>
+              <button type="submit" class="px-8 py-4 bg-primary text-white rounded-lg hover:shadow-lg hover:shadow-primary/50 transition-all transform hover:-translate-y-1">Submit</button>
             </form>
-            <span id="msg"></span>
+            <span id="msg" class="block mt-4 text-green-500"></span>
           </div>
         </div>
       </div>
-      <div class="copyright">
-        <p>
-          © Jash. Made with <i class="fa-solid fa-heart"></i> by
-          <a
-            href="https://telegram.dog/DeveIoper_X"
-            target="_blank"
-            class="mailatt"
-            >DeveIoper_X</a
-          >
+      <div class="mt-20 py-6 bg-black/50 text-center">
+        <p class="text-sm">
+          © Jash. Made with <i class="fa-solid fa-heart text-primary"></i> by
+          <a href="https://telegram.dog/DeveIoper_X" target="_blank" class="text-primary hover:underline">DeveIoper_X</a>
         </p>
       </div>
     </div>
@@ -478,13 +476,141 @@
 
     <script>
       var sidemenu = document.getElementById("sidemenu");
+      
       function openmenu() {
-        sidemenu.style.right = "0";
+        sidemenu.classList.add('active');
       }
+      
       function closemenu() {
-        sidemenu.style.right = "-200px";
+        sidemenu.classList.remove('active');
       }
+
+      // Close menu when clicking outside
+      document.addEventListener('click', function(event) {
+        const isClickInside = sidemenu.contains(event.target);
+        const isMenuButton = event.target.classList.contains('fa-bars');
+        
+        if (!isClickInside && !isMenuButton && sidemenu.classList.contains('active')) {
+          closemenu();
+        }
+      });
+
+      // Close menu when pressing escape
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && sidemenu.classList.contains('active')) {
+          closemenu();
+        }
+      });
     </script>
+
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 1000,
+        once: true
+      });
+
+      // GSAP Animations
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Header Animation
+      gsap.from(".header-text", {
+        duration: 1.5,
+        y: 100,
+        opacity: 0,
+        ease: "power4.out"
+      });
+
+      // Services Animation
+      gsap.from(".services-list div", {
+        scrollTrigger: {
+          trigger: ".services-list",
+          start: "top center",
+        },
+        duration: 1,
+        y: 50,
+        opacity: 0,
+        stagger: 0.2,
+        ease: "power3.out"
+      });
+
+      // Portfolio Animation
+      gsap.from(".work", {
+        scrollTrigger: {
+          trigger: ".work-list",
+          start: "top center",
+        },
+        duration: 1,
+        scale: 0.8,
+        opacity: 0,
+        stagger: 0.2,
+        ease: "back.out(1.7)"
+      });
+
+      // About Section Animation
+      gsap.from(".about-col-1", {
+        scrollTrigger: {
+          trigger: "#about",
+          start: "top center",
+        },
+        duration: 1,
+        x: -100,
+        opacity: 0,
+        ease: "power3.out"
+      });
+
+      gsap.from(".about-col-2", {
+        scrollTrigger: {
+          trigger: "#about",
+          start: "top center",
+        },
+        duration: 1,
+        x: 100,
+        opacity: 0,
+        ease: "power3.out"
+      });
+
+      // Contact Section Animation
+      gsap.from(".contact-left", {
+        scrollTrigger: {
+          trigger: "#contact",
+          start: "top center",
+        },
+        duration: 1,
+        x: -50,
+        opacity: 0,
+        ease: "power3.out"
+      });
+
+      gsap.from(".contact-right", {
+        scrollTrigger: {
+          trigger: "#contact",
+          start: "top center",
+        },
+        duration: 1,
+        x: 50,
+        opacity: 0,
+        ease: "power3.out"
+      });
+
+      // Floating Animation for Services Icons
+      gsap.to(".services-list i", {
+        y: 10,
+        duration: 1.5,
+        ease: "power1.inOut",
+        yoyo: true,
+        repeat: -1
+      });
+
+      // Grid Animation
+      gsap.to("#header::before", {
+        backgroundPosition: "50px 50px",
+        duration: 20,
+        repeat: -1,
+        ease: "none"
+      });
+    </script>
+
     <script>
       const scriptURL =
         "https://script.google.com/macros/s/AKfycbwAOxvgHyPIpSmLeu11KJNgrxUvI1pnCzWvlZkuqOTjYD2auSnQwbuKONorNVn7OqCNyg/exec";
