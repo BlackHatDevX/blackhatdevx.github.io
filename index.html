@@ -53,19 +53,17 @@
   </head>
   <body class="bg-dark text-white overflow-x-hidden" oncopy="return false" oncut="return false" onpaste="return false">
     <div id="header" class="relative w-full min-h-screen bg-cover bg-center">
-      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="absolute inset-0 "></div>
       <div class="container relative z-10">
-        <nav class="flex items-center justify-between flex-wrap p-6 backdrop-blur-md bg-white/10 rounded-xl border border-white/20">
+        <nav class="hidden md:flex items-center justify-between flex-wrap p-6 backdrop-blur-md bg-white/10 rounded-xl border border-white/20">
           <img src="images/logo.png" class="w-36 transition-transform hover:scale-110" />
-          <ul id="sidemenu" class="flex space-x-8">
+          <ul class="flex space-x-8">
             <li><a href="#header" class="text-lg hover:text-primary transition-colors">Home</a></li>
             <li><a href="#about" class="text-lg hover:text-primary transition-colors">About</a></li>
             <li><a href="#services" class="text-lg hover:text-primary transition-colors">Services</a></li>
             <li><a href="#portfolio" class="text-lg hover:text-primary transition-colors">Portfolio</a></li>
             <li><a href="#contact" class="text-lg hover:text-primary transition-colors">Contact</a></li>
-            <i class="icofas fa-solid fa-xmark cursor-pointer" onclick="closemenu()"></i>
           </ul>
-          <i class="icofas fa-solid fa-bars cursor-pointer md:hidden" onclick="openmenu()"></i>
         </nav>
         <div class="header-text mt-32 md:mt-40">
           <p class="text-2xl md:text-4xl">Developer X</p>
@@ -480,19 +478,32 @@
       
       function openmenu() {
         sidemenu.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
       }
       
       function closemenu() {
         sidemenu.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
       }
+
+      // Close menu when clicking a link
+      sidemenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth < 768) { // Only close on mobile
+            closemenu();
+          }
+        });
+      });
 
       // Close menu when clicking outside
       document.addEventListener('click', function(event) {
-        const isClickInside = sidemenu.contains(event.target);
-        const isMenuButton = event.target.classList.contains('fa-bars');
-        
-        if (!isClickInside && !isMenuButton && sidemenu.classList.contains('active')) {
-          closemenu();
+        if (window.innerWidth < 768) { // Only handle on mobile
+          const isClickInside = sidemenu.contains(event.target);
+          const isMenuButton = event.target.classList.contains('fa-bars');
+          
+          if (!isClickInside && !isMenuButton && sidemenu.classList.contains('active')) {
+            closemenu();
+          }
         }
       });
 
@@ -500,6 +511,14 @@
       document.addEventListener('keydown', function(event) {
         if (event.key === 'Escape' && sidemenu.classList.contains('active')) {
           closemenu();
+        }
+      });
+
+      // Update menu state on resize
+      window.addEventListener('resize', function() {
+        if (window.innerWidth >= 768) {
+          closemenu();
+          sidemenu.style.display = 'flex';
         }
       });
     </script>
@@ -640,6 +659,11 @@
         display: none;
       }
 
+      /* Mobile menu active state */
+      #sidemenu.active {
+        right: 0;
+      }
+
       /* Modal styles */
       .modal {
         display: none;
@@ -693,7 +717,9 @@
           { id: '1nbFdlyrmu-AeI1zVXY32MlFmKkdQyFPm', name: 'Certificate 12', type: 'jpg' },
           { id: '1nnsII4Z11eHENSX4Kr7tGcjmXgmCL02a', name: 'Certificate 13', type: 'jpg' },
           { id: '1yL7nr4UdWLpHAoQhOSuonTxVeY-yXVj1', name: 'Certificate 14', type: 'jpg' },
-          { id: '1Ywy7WOXI63t7rDjVjZIOHkG17DK_TAlu', name: 'Certificate 15', type: 'jpg' }
+          { id: '1Ywy7WOXI63t7rDjVjZIOHkG17DK_TAlu', name: 'Certificate 15', type: 'jpg' },
+          { id: '1pB3AwPr_3_6bo-us-5yfN8AmmN57Doi7', name: 'Certificate 17', type: 'jpg' },
+          { id: '1YjMkGbgU_iaOl2JWHyOtbzYacb82Fy4I', name: 'Certificate 16', type: 'png' },
         ];
 
         // Shuffle the array
@@ -716,7 +742,7 @@
                 style="border: none; overflow: hidden; background: ${file.type === 'pdf' ? '#fff' : 'transparent'}"
                 allow="autoplay"
               ></iframe>
-              <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
+              <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
                 <span class="text-white text-center px-4">
                   ${file.name}
                   ${file.type === 'pdf' ? '<br><small class="text-primary">(Click to view full PDF)</small>' : ''}
